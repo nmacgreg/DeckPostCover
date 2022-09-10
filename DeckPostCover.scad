@@ -8,9 +8,9 @@ CenterSquareHeight=Height+0.2; //slightly taller
 WallThickness=2.6;
 InternalVoid=Outer-WallThickness;
 InternalVoidHeight=Height-WallThickness;
-//module name() {
-//    polygon([0,0], [15,-13], [15,13])
-//};
+module dogEar() {
+    polygon([[0,0], [15,-13], [15,13]]);
+}
 union() {
     difference() {
         difference() {
@@ -27,6 +27,6 @@ union() {
             square(InternalVoid, center=true);
     };      
     translate ([-4, (Outer/2 - 13), (Height-WallThickness)])
-    linear_extrude(height=WallThickness) 
-    polygon([[0,0], [15,-13], [15,13]]);
+    linear_extrude(height=WallThickness) dogEar();
+    // polygon([[0,0], [15,-13], [15,13]]);
 }
