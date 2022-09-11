@@ -1,7 +1,5 @@
 // My measurements are in mm
 Outer=109;
-Half=Outer/2;
-Quarter=Half/2;
 Height=22.4;
 CenterSquare=52.22;
 CenterSquareHeight=Height+0.2; //slightly taller
@@ -9,10 +7,10 @@ WallThickness=2.6;
 InternalVoid=Outer-WallThickness;
 InternalVoidHeight=Height-WallThickness;
 module outerShell(){
-                // Outer shell
-                translate([-Quarter,0]) 
+                // Outer shell is 
+                translate([-(Outer/4),0]) 
                 linear_extrude(height=Height) 
-                square([Half,Outer], center=true);    
+                square([(Outer/2),Outer], center=true);    
 }
 module centerHole() {
                 // Hole, center top
@@ -24,11 +22,17 @@ module innerHollow() {
             linear_extrude(height=InternalVoidHeight)
                 square(InternalVoid, center=true);
 }
-// This is just a triangular prism 
+// This is just a triangular prism
+// I'm going by feel, on this one!
+// It would fit in a rectangle with these dimensions:
+dogEarX=14;
+dogEarY=18;
 module dogEar() {
     linear_extrude(height=WallThickness) 
-    polygon([[0,0], [14,-9], [14,9]]); // by guess and by gosh
+    polygon([[0,0], [dogEarX,-(dogEarY/2)], [dogEarX,(dogEarY/2)]]); // by guess and by gosh
 }
+clearance=0.1; // a "fudge-factor" for 3D printing, letting parts fit
+dogEarStrength=4; // how deep to bury the dogEars
 difference() {
     union() {
         difference() {
@@ -37,12 +41,12 @@ difference() {
                 centerHole();
             }
             innerHollow();
-        };      
-        translate([-4, (Outer/2 - 14), (Height-WallThickness)])
-        dogEar();
+        }      
+        translate([-dogEarStrength, (Outer/2 - 14), (Height-WallThickness)])
+        dogEar(); // add the dogEar, in the right place
     }   
-    // 3.9=(4-0.1), allowing 0.1mm for clearance
-    translate([3.9, (-(Outer/2 - 14)), (Height-WallThickness)])
+    resize([(dogEarX+clearance),(dogEarY+clearance)])
+    translate([dogEarStrength, (-(Outer/2 - 14)), (Height-WallThickness)])
     rotate([0,0,180])    
-    dogEar();
+    dogEar();  // subtract the dogEar, in the right place, bigger!
 }
