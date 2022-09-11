@@ -12,8 +12,8 @@ module outerShell(){
                 linear_extrude(height=Height) 
                 square([(Outer/2),Outer], center=true);    
 }
-module centerHole() {
-                // Hole, center top
+module centerPost() {
+                // Post, centered
                 linear_extrude(height=CenterSquareHeight)
                     square(CenterSquare, center=true);
 }
@@ -39,7 +39,7 @@ difference() {
         difference() {
             difference() {
                 outerShell();
-                centerHole();
+                centerPost();
             }
             innerHollow();
         }      
