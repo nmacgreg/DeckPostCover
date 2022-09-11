@@ -27,6 +27,7 @@ module innerHollow() {
 // It would fit in a rectangle with these dimensions:
 dogEarX=14;
 dogEarY=18;
+dogEarYPos=((CenterSquare/2 + (Outer/2-CenterSquare/2)/2));
 module dogEar() {
     linear_extrude(height=WallThickness) 
     polygon([[0,0], [dogEarX,-(dogEarY/2)], [dogEarX,(dogEarY/2)]]); // by guess and by gosh
@@ -42,11 +43,11 @@ difference() {
             }
             innerHollow();
         }      
-        translate([-dogEarStrength, (Outer/2 - 14), (Height-WallThickness)])
+        translate([-dogEarStrength, dogEarYPos, (Height-WallThickness)])
         dogEar(); // add the dogEar, in the right place
     }   
     resize([(dogEarX+clearance),(dogEarY+clearance)])
-    translate([dogEarStrength, (-(Outer/2 - 14)), (Height-WallThickness)])
+    translate([dogEarStrength, -dogEarYPos, (Height-WallThickness)])
     rotate([0,0,180])    
     dogEar();  // subtract the dogEar, in the right place, bigger!
 }
