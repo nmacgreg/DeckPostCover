@@ -21,11 +21,13 @@ module centerHole() {
 }
 module innerHollow() {
                 // The inside is hollow
-            linear_extrude(height=19.69)
+            linear_extrude(height=InternalVoidHeight)
                 square(InternalVoid, center=true);
 }
+// This is just a triangle 
 module dogEar() {
-    polygon([[0,0], [15,-13], [15,13]]);
+    linear_extrude(height=WallThickness) 
+    polygon([[0,0], [14,-9], [14,9]]); // by guess and by gosh
 }
 difference() {
     union() {
@@ -36,10 +38,10 @@ difference() {
             }
             innerHollow();
         };      
-        translate ([-4, (Outer/2 - 13), (Height-WallThickness)])
-        linear_extrude(height=WallThickness) dogEar();
-        // polygon([[0,0], [15,-13], [15,13]]);
-    }
-        translate ([-4.1, (-(Outer/2 - 13)), (Height-WallThickness)])
-        linear_extrude(height=WallThickness) dogEar();
+        translate([-4, (Outer/2 - 14), (Height-WallThickness)])
+        dogEar();
+    }   
+    translate([3.9, (-(Outer/2 - 14)), (Height-WallThickness)])
+    rotate([0,0,180])    
+    dogEar();
 }
