@@ -24,7 +24,7 @@ module innerHollow() {
             linear_extrude(height=InternalVoidHeight)
                 square(InternalVoid, center=true);
 }
-// This is just a triangle 
+// This is just a triangular prism 
 module dogEar() {
     linear_extrude(height=WallThickness) 
     polygon([[0,0], [14,-9], [14,9]]); // by guess and by gosh
@@ -41,6 +41,7 @@ difference() {
         translate([-4, (Outer/2 - 14), (Height-WallThickness)])
         dogEar();
     }   
+    // 3.9=(4-0.1), allowing 0.1mm for clearance
     translate([3.9, (-(Outer/2 - 14)), (Height-WallThickness)])
     rotate([0,0,180])    
     dogEar();
