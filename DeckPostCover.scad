@@ -25,12 +25,12 @@ module innerHollow() {
 // This is just a triangular prism
 // I'm going by feel, on this one!
 // It would fit in a rectangle with these dimensions:
-dogEarX=14;
+dogEarX=14; // These values should be calculated from Outer (?)
 dogEarY=18;
-dogEarYPos=((CenterSquare/2 + (Outer/2-CenterSquare/2)/2));
+dogEarYPos=((CenterSquare/2 + (Outer/2-CenterSquare/2)/2)); // Center of arm
 module dogEar() {
     linear_extrude(height=WallThickness) 
-    polygon([[0,0], [dogEarX,-(dogEarY/2)], [dogEarX,(dogEarY/2)]]); // by guess and by gosh
+    polygon([[0,0], [dogEarX,-(dogEarY/2)], [dogEarX,(dogEarY/2)]]);
 }
 clearance=0.1; // a "fudge-factor" for 3D printing, letting parts fit
 dogEarStrength=4; // how deep to bury the dogEars
