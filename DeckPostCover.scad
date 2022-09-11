@@ -33,7 +33,7 @@ module dogEar() {
     polygon([[0,0], [dogEarX,-(dogEarY/2)], [dogEarX,(dogEarY/2)]]);
 }
 clearance=0.1; // a "fudge-factor" for 3D printing, letting parts fit
-dogEarStrength=4; // how deep to bury the dogEars
+dogEarStrength=5; // how deep to bury the dogEars
 difference() {
     union() {
         difference() {
