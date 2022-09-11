@@ -9,9 +9,17 @@
     * Deck post flare
     * Deck post base cover
     * Post base trim
+    * Post base cover
     * Railing post base
     * Post skirt dressing
 
 # Status: 2022 Sept. 10: WIP
 
 * This is a work in progress.  I haven't printed or test-fit these, yet.
+
+# Images are worth a thousand words:
+
+* [Amazon search for these](https://www.amazon.com/Deck-Post-Covers/s?k=Deck+Post+Covers)
+* [Amazon search for deck post skirt](https://www.amazon.com/deck-post-skirt/s?k=deck+post+skirt)
+* [The Deck Store carries these](https://www.thedeckstore.com/deck-post-caps-and-accessories/posts-post-accessories/deck-rail-post-skirts.html)
+* [DecksDirect.com carries these](https://www.decksdirect.com/deck-railing-accessories/deck-fence-post-caps/post-skirts)
