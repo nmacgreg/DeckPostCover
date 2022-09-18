@@ -1,28 +1,31 @@
 // This is a complete rewrite.  This time, going for rounded edges!
-// This may not be right!  Does the minkowki make it bigger by 2*minkValue()
+// This may not be right!  Does the minkowki make it bigger by 2*minkValue(), or 1x?
 // My measurements are in mm
-minkValue=2;
+minkValue=3;
 Outer=109-minkValue;
 Height=22.4-minkValue;
 CenterSquare=52.22;
 CenterSquareHeight=Height+0.2; //slightly taller
-WallThickness=2.6;
+WallThickness=3.0;
 InternalVoid=Outer-WallThickness;
 InternalVoidHeight=Height-WallThickness;
 
 module outerShell(){
-                // Outer shell is
-    minkowski() {
-                translate([-(Outer/4),0]) 
-                linear_extrude(height=Height-(minkValue)) 
-                square([(Outer/2-(minkValue)),Outer-(minkValue)], center=true);
-                sphere(minkValue);
+    difference() {
+        minkowski() {
+            linear_extrude(height=Height-(minkValue)) 
+            square([(Outer-(minkValue)),Outer-(minkValue)], center=true);
+            sphere(minkValue);
+        };
+        translate([Outer/2,0,-minkValue])
+        linear_extrude(height=Height+minkValue) 
+        square([Outer,Outer+minkValue], center=true);
     }
 }
 module centerPost() {
                 // Post, centered
                 linear_extrude(height=CenterSquareHeight)
-                    square(CenterSquare, center=true);
+                square(CenterSquare, center=true);
 }
 module innerHollow() {
                 // The inside is hollow
@@ -42,20 +45,21 @@ module dogEar() {
 }
 clearance=0.1; // a "fudge-factor" for 3D printing, letting parts fit
 dogEarStrength=5; // how deep to bury the dogEars
-difference() {
-    union() {
-        difference() {
+rotate([0,180,0]) translate([0,0,-(Height)])
+    difference() {
+        union() {
             difference() {
-                outerShell();
-                centerPost();
-            }
-            innerHollow();
-        }      
-        translate([-dogEarStrength, dogEarYPos, (Height-WallThickness)])
-        dogEar(); // add the dogEar, in the right place
-    }   
-    resize([(dogEarX+clearance),(dogEarY+clearance)])
-    translate([dogEarStrength, -dogEarYPos, (Height-WallThickness)])
-    rotate([0,0,180])    
-    dogEar();  // subtract the dogEar, in the right place, bigger!
-}
+                difference() {
+                    outerShell();
+                    centerPost();
+                }
+                innerHollow();
+            }      
+            translate([-dogEarStrength, dogEarYPos, (Height-WallThickness)])
+            dogEar(); // add the dogEar, in the right place
+        }   
+        resize([(dogEarX+clearance),(dogEarY+clearance)])
+        translate([dogEarStrength, -dogEarYPos, (Height-WallThickness)])
+        rotate([0,0,180])    
+        dogEar();  // subtract the dogEar, in the right place, bigger!
+    }
