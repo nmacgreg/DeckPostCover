@@ -13,11 +13,20 @@
     * Railing post base
     * Post skirt dressing
 
-# Status: 2022 Sept. 10: WIP
+## Status: 2022 Sept. 18, v0.0.2 -  relieved edges
 
-* This is a work in progress.  I haven't printed or test-fit these, yet.
+* Improved in several ways: 
+    * Thicker walls
+    * Rounded edges
+    * Better orientation for slicing
+* Initial printing says it's not compatible with v0.0.1
 
-# Images are worth a thousand words:
+## Status: 2022 Sept. 10, v0.0.1 - first version
+
+* This is a work in progress.  
+* I printed a pair of these and tried them on the target post.  They fit really nicely.  Quite chuffed at how well they fit, actually, and on first attempt.
+
+## Links
 
 * [Amazon search for these](https://www.amazon.com/Deck-Post-Covers/s?k=Deck+Post+Covers)
 * [Amazon search for deck post skirt](https://www.amazon.com/deck-post-skirt/s?k=deck+post+skirt)
