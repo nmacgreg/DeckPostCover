@@ -9,13 +9,13 @@ SmallHeight = Height-(minkValue*2);  // The height we'll draw the outer shell, m
 CenterSquare=52.22;
 CenterSquareHeight=Height;
 WallThickness=3.0;
-InternalVoid=Outer-minkValue-WallThickness;
+InternalVoid=Outer-WallThickness;
 InternalVoidHeight=Height-WallThickness;
 
 module outerShell(){
     translate([0,0,minkValue]) // raise it back to the origin plane, by 1 mink
-    difference() {
-        minkowski() {  // the minkowski() increase overall dimensions by 2*minkValue
+    difference() {  // subtract the left-hand-side of this rectangle
+        minkowski() {  // the minkowski() increases overall dimensions by 2*minkValue
             linear_extrude(height=SmallHeight) 
             square([SmallOuter,SmallOuter], center=true);
             sphere(minkValue);
@@ -31,9 +31,13 @@ module centerPost() {
                 square(CenterSquare, center=true);
 }
 module innerHollow() {
-                // The inside is hollow
-            linear_extrude(height=InternalVoidHeight)
-                square(InternalVoid, center=true);
+    // The inside is hollow
+        translate([0,0,(minkValue)]) // raise it back to the origin plane, after mink()
+    minkowski() {
+        linear_extrude(height=(InternalVoidHeight-(minkValue*2)+0.15)) //bug here!
+        square((InternalVoid-(minkValue*2)), center=true);
+        sphere(minkValue);
+    }
 }
 // This is just a triangular prism
 // I'm going by feel, on this one!
