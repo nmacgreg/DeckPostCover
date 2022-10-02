@@ -61,7 +61,7 @@ dogEarStrength=5; // how deep to bury the dogEars
                 }
                 innerHollow();
             }      
-            translate([-dogEarStrength, dogEarYPos, (Height-WallThickness)])
+            translate([-dogEarStrength, dogEarYPos, (Height-WallThickness-0.2)])
             dogEar(); // add the dogEar, in the right place
         }
         // subtract the dogEar, in the right place, bigger by "clearance"!
